@@ -1,0 +1,6 @@
+services:
+  chromadb:
+    container_name: kebab-chromadb
+    image: chromadb/chroma:0.5.15
+    ports:
+      - 5900:8000
