@@ -4,3 +4,22 @@ services:
     image: chromadb/chroma:0.5.15
     ports:
       - 5900:8000
+    volumes:
+      - chromadb:/chroma/chroma
+    environment:
+      IS_PERSISTENT=TRUE
+      ANONYMIZED_TELEMETRY=FALSE
+  mongodb:
+    container_name: kebab-mongodb
+    image: mongo:8.0.1
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  mongodb:
+  chromadb:
