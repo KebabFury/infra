@@ -7,8 +7,8 @@ services:
     volumes:
       - chromadb:/chroma/chroma
     environment:
-      IS_PERSISTENT=TRUE
-      ANONYMIZED_TELEMETRY=FALSE
+      IS_PERSISTENT: TRUE
+      ANONYMIZED_TELEMETRY: FALSE
   mongodb:
     container_name: kebab-mongodb
     image: mongo:8.0.1
