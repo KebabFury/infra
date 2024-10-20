@@ -1,4 +1,18 @@
 services:
+  ai-service:
+    container_name: kebab-ai-service
+    build:
+      context: ../ai-service
+    ports:
+      - 9000:8000
+    develop:
+      watch:
+        - action: rebuild
+          path: ../ai-service
+    depends_on:
+      - chromadb
+      - mongodb
+
   chromadb:
     container_name: kebab-chromadb
     image: chromadb/chroma:0.5.15
@@ -9,6 +23,7 @@ services:
     environment:
       IS_PERSISTENT: TRUE
       ANONYMIZED_TELEMETRY: FALSE
+
   mongodb:
     container_name: kebab-mongodb
     image: mongo:8.0.1
