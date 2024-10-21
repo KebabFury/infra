@@ -13,6 +13,20 @@ services:
       - chromadb
       - mongodb
 
+  backend-service:
+    container_name: kebab-backend-service
+    build:
+      context: ../backend-service
+    ports:
+      - "5243:8080"
+    develop:
+      watch:
+        - action: rebuild
+          path: ../backend-service
+    depends_on:
+      - ai-service
+      - mongodb
+
   chromadb:
     container_name: kebab-chromadb
     image: chromadb/chroma:0.5.15
