@@ -1,4 +1,18 @@
 services:
+  web-client:
+    container_name: kebab-web-client
+    build:
+      context: ../web-client
+    ports: 
+      - 4200:4200
+    develop:
+      watch:
+        - action: rebuild
+          path: ../web-client
+    depends_on:
+      - backend-service
+      - ai-service
+
   ai-service:
     container_name: kebab-ai-service
     build:
@@ -18,11 +32,13 @@ services:
     build:
       context: ../backend-service
     ports:
-      - "5243:8080"
+      - "5243:80"
     develop:
       watch:
         - action: rebuild
           path: ../backend-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - ai-service
       - mongodb
@@ -48,6 +64,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: kebab-innopolis
 
 volumes:
   mongodb:
