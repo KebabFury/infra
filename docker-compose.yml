@@ -11,21 +11,6 @@ services:
           path: ../web-client
     depends_on:
       - backend-service
-      - ai-service
-
-  ai-service:
-    container_name: kebab-ai-service
-    build:
-      context: ../ai-service
-    ports:
-      - 9000:8000
-    develop:
-      watch:
-        - action: rebuild
-          path: ../ai-service
-    depends_on:
-      - chromadb
-      - mongodb
 
   backend-service:
     container_name: kebab-backend-service
@@ -40,19 +25,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - ai-service
       - mongodb
-
-  chromadb:
-    container_name: kebab-chromadb
-    image: chromadb/chroma:0.5.15
-    ports:
-      - 5900:8000
-    volumes:
-      - chromadb:/chroma/chroma
-    environment:
-      IS_PERSISTENT: TRUE
-      ANONYMIZED_TELEMETRY: FALSE
 
   mongodb:
     container_name: kebab-mongodb
@@ -68,4 +41,3 @@ services:
 
 volumes:
   mongodb:
-  chromadb:
