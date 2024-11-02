@@ -1,5 +1,9 @@
-name: "Deployment CI"
-on: [repository_dispatch]
+name: "Deployment CI"  
+on:
+  push:
+    branches: [master]
+  repository_dispatch:
+    types: [dispatch-event]
 
 jobs:
   deploy:
