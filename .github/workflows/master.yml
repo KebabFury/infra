@@ -19,6 +19,8 @@ jobs:
             cd ${{ secrets.PROJECT_FOLDER }};
             git checkout master;
             git pull;
-            jobs -p > kill;
             docker compose --file docker-compose.yml down;
-            (docker compose --file docker-compose.yml watch --quiet &) && docker system prune --all --force;
+      - name: Run docker watch in bg
+        uses: JarvusInnovations/background-action@v1
+        with:
+          run: docker compose --file docker-compose.yml watch
