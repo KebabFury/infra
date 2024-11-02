@@ -1,7 +1,5 @@
 name: "Deployment CI"
-on:
-  repository_dispatch:
-    types: [dispatch-event]
+on: [repository_dispatch]
 
 jobs:
   deploy:
