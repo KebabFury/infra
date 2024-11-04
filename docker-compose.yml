@@ -4,7 +4,7 @@ services:
     build:
       context: ../web-client
     ports:
-      - 4200:4200
+      - 80:4200
     develop:
       watch:
         - action: rebuild
@@ -17,7 +17,7 @@ services:
     build:
       context: ../backend-service
     ports:
-      - "80:80"
+      - "5243:80"
     develop:
       watch:
         - action: rebuild
