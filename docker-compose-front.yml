@@ -1,23 +1,10 @@
 services:
-  web-client:
-    container_name: kebab-web-client
-    build:
-      context: ../web-client
-    ports:
-      - 4200:4200
-    develop:
-      watch:
-        - action: rebuild
-          path: ../web-client
-    depends_on:
-      - backend-service
-
   backend-service:
     container_name: kebab-backend-service
     build:
       context: ../backend-service
     ports:
-      - "80:80"
+      - "5243:80"
     develop:
       watch:
         - action: rebuild
