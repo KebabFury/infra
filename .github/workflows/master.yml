@@ -23,5 +23,5 @@ jobs:
             git checkout master;
             git pull;
             docker compose --file docker-compose.yml down;
-            docker compose --file docker-compose.yml up --build --force-recreate --no-deps -d;
+            docker compose --file docker-compose.yml up --build -d;
             docker system prune --all --force;
